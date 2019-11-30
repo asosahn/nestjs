@@ -6,26 +6,14 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const options = new DocumentBuilder()
-    .setTitle('DOKTO')
-    .setDescription('The DOKTO API description')
+    .setTitle('NEST')
+    .setDescription('The NEST API description')
     .setVersion('1.0')
-    .addTag('DOKTO')
+    .addTag('NEST')
     .build();
   const document = SwaggerModule.createDocument(app, options, {
   });
   SwaggerModule.setup('api', app, document);
-  const UsersOptions = new DocumentBuilder()
-    .setTitle('Users')
-    .setDescription('The Users API description')
-    .setVersion('1.0')
-    .addTag('Users')
-    .build();
-  const documentUser = SwaggerModule.createDocument(app, UsersOptions, {
-    include: [CreateUser],
-  });
-  SwaggerModule.setup('api/users', app, documentUser);
-
-
   await app.listen(3001);
 }
 bootstrap();
